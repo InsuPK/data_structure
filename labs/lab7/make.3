@@ -1,0 +1,19 @@
+CC = g++
+LIBDIR = ../lib
+INCDIR = ../include
+CCFLAGS = -Wall -std=c++11 -g
+LDFFLAGS = -L$(LIBDIR) -lnowic_arm64 -llibsort
+
+SRCS = sortDriver.cpp
+OBJS = $(SRCS:.cpp=.o)
+EXE1 = sortDriver
+
+$(EXE1): $(OBJS)
+	$(CC) -o $@ $^ $(LDFLAGS)
+%.o: %.cpp
+	$(CC) -c $(CCFLAGS) -I$(INCDIR) $<
+
+.PHONY: all clean
+all: $(EXE1)
+clean:
+	rm -f $(OBJS) $(EXE1)
